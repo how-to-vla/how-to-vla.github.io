@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <title>How To VLA</title>
+
+    <meta charset="UTF-8">
+    <meta property="og:title" content="VLA">
+    <meta property="og:description" content="Knowledge Insulation for Generalizable, Fast VLAs">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="website">
+    <meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=1.0">
+
+    <link rel="icon" type="image/png" href="">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100, 100i,300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <!-- Showdown -->
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+    <script src="js/figure-extension.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!-- WAVE -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- Slick -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <link rel="stylesheet" href="theme.css">
+
+    <script>
+        const classMap = {
+            ul: 'browser-default'
+        }
+
+        const bindings = Object.keys(classMap)
+        .map(key => ({
+            type: 'output',
+            regex: new RegExp(`<${key}(.*)>`, 'g'),
+            replace: `<${key} class="${classMap[key]}" $1>`
+        }));
+
+        const converter = new showdown.Converter({
+            extensions: [bindings, 'figure']
+        });
+        converter.setOption('parseImgDimensions', true);
+        converter.setOption('tables', true);
+        converter.setFlavor('github');
+
+        $("#markdown-body").ready(() => {
+            $.get( "content.md", (data) => {
+                const content_html = converter.makeHtml(data);
+                $("#markdown-body").html(content_html);
+            });
+        });
+
+    </script>
+
+    <body>
+        <!-- Header -->
+        <!-- Wide screen -->
+        <header class="hd-container w3-container hide-narrow content-center">
+            <div class="w3-cell-row" style="width: 90%; margin: auto; max-width: 1600px; margin-top: 80px; margin-bottom: 40px">
+                <div class="w3-container w3-cell w3-cell-middle">
+                    <div class="title">Knowledge Insulation for Generalizable, Fast VLAs</div>
+                    <!-- Author -->
+                <div class="w3-row-padding">
+                    <div class="authorship-container">
+                        <ul class="horizontal-list">
+                            <li><i class="far fa-user"></i> Anonymous Authors</li>
+                        </ul>
+                    </div>
+                    </div>
+                    <div class="excerpt w3-padding-16" style="width: 80%; max-width: 700px; margin: auto;">
+                        Vision-language-action (VLA) models provide a powerful approach for training control policies for physical systems such
+                        as robots that combines end-to-end learning with transfer of semantic knowledge from web-scale vision-language model
+                        (VLM) training. However, the constraints of real-time control are often at odds with the design of VLMs: the most
+                        powerful VLMs have tens or hundreds of billions of parameters, presenting an obstacle to real-time inference, and
+                        operate on discrete tokens rather than the continuous-valued outputs that are required for controlling robots. To
+                        address this challenge, many of the most successful recent VLA models have used specialized modules for efficient
+                        continuous control, such as action experts or continuous output heads, which typically requires adding new untrained
+                        parameters to the pretrained VLM backbone. While these modules address the continuous control and real-time inference
+                        challenges, it remains an open question how much such modules preserve or degrade the semantic knowledge contained in
+                        the pretrained VLM, and the effect they have on the dynamics of VLA training. In this paper, we study this question
+                        specifically in the context of VLAs that include a continuous diffusion or flow matching action expert, showing that
+                        naively including such action experts significantly harms both training speed and knowledge transfer. We provide an
+                        extensive analysis of various design choices, their impact on training speed and knowledge transfer, and propose a
+                        technique for insulating the VLM backbone during VLA training that mitigates this issue.
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Narrow screen -->
+        <header class="hd-container w3-container hide-wide">
+            <div class="w3-row-padding w3-center w3-padding-24">
+                <span class="title">Knowledge Insulation for Generalizable, Fast VLAs</span>
+            </div>
+            <div class="w3-row-padding">
+                <!-- Author -->
+                <div class="authorship-container">
+                    <ul class="horizontal-list">
+                        <li><i class="far fa-user"></i> Anonymous Authors</li>
+                    </ul>
+                </div>
+        
+            </div>
+            <div class="w3-row-padding">
+                <hr>
+            </div>
+            <div class="w3-row-padding w3-padding-16">
+                <div class="excerpt">
+                    Vision-language-action (VLA) models provide a powerful approach for training control policies for physical systems such
+                    as robots that combines end-to-end learning with transfer of semantic knowledge from web-scale vision-language model
+                    (VLM) training. However, the constraints of real-time control are often at odds with the design of VLMs: the most
+                    powerful VLMs have tens or hundreds of billions of parameters, presenting an obstacle to real-time inference, and
+                    operate on discrete tokens rather than the continuous-valued outputs that are required for controlling robots. To
+                    address this challenge, many of the most successful recent VLA models have used specialized modules for efficient
+                    continuous control, such as action experts or continuous output heads, which typically requires adding new untrained
+                    parameters to the pretrained VLM backbone. While these modules address the continuous control and real-time inference
+                    challenges, it remains an open question how much such modules preserve or degrade the semantic knowledge contained in
+                    the pretrained VLM, and the effect they have on the dynamics of VLA training. In this paper, we study this question
+                    specifically in the context of VLAs that include a continuous diffusion or flow matching action expert, showing that
+                    naively including such action experts significantly harms both training speed and knowledge transfer. We provide an
+                    extensive analysis of various design choices, their impact on training speed and knowledge transfer, and propose a
+                    technique for insulating the VLM backbone during VLA training that mitigates this issue.
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Body -->
+        <div class="main-body">
+            <div class="w3-container">
+                <div class="w3-content" style="max-width:1000px;">
+                    <!-- Links -->
+                    <div class="link-container">
+                        <ul class="horizontal-list">
+                            <!-- replace later -->
+                            <!-- <li><button class="w3-button waves-effect waves-light w3-card-4 grey lighten-2 w3-round-large"><i
+                                        class="fas fa-file-alt"></i> <a
+                                        href="" target="_blank"> Paper
+                                    </a></button></li>
+                            <li><button class="w3-button waves-effect waves-light w3-card-4 grey lighten-2 w3-round-large"><i
+                                        class="fas fa-code"></i> <a href=""
+                                        target="_blank"> Code </a></button></li> -->
+                        </ul>
+                    </div>
+                    <!-- Markdown Body -->
+                    <div id="markdown-body"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="w3-center w3-light-grey w3-padding-32 w3-small">
+            <p style="color: grey">
+            </p>
+        </footer>
+        
+        </body>
+        
+        </html>
